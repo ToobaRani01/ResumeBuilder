@@ -187,18 +187,7 @@ ResumeBuilder/
 └── ResumeAnalyzer.mp4
 ```
 
----
 
-
-### Gap Checklist
-
-```text
-✓ Education
-✓ Experience
-✓ Skills
-✓ Projects
-✓ Certifications
-```
 
 ---
 
