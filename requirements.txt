@@ -1,5 +1,5 @@
-Flask==3.3.1
+flask>=3.0.3
 langchain-core==1.4.6
-langchain-google-genai==4.2.5 
+langchain-google-genai==4.2.5
 PyPDF2==3.0.1
-python-dotenv==1.2.2
+python-dotenv>=1.0.1

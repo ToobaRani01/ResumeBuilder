@@ -84,8 +84,7 @@ Upload a resume PDF and view the analysis directly in the UI.
 ## Project Structure
 
 - `app.py` — Flask application and Gemini integration
-- `templates/index.html` — frontend UI
-- `static/` — CSS and JavaScript assets
+- `templates/index.html` — frontend UI with css and js 
 - `requirements.txt` — Python dependencies
 
 ## Notes
