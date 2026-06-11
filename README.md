@@ -68,7 +68,7 @@ ResumeAnalyzer.mp4
 * Google Gemini API
 * LangChain Google Generative AI
 
-### AI & NLP
+### GEN AI 
 
 * Google Gemini 2.5 Flash
 * Prompt Engineering
