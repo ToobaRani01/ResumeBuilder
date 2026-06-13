@@ -363,7 +363,9 @@
 
         /* Error Message */
         #errorText {
-            display: none !important;
+            margin-top: 1.5rem;
+            text-align: center;
+            font-weight: 600;
         }
 
         /* Progress Bar */
@@ -606,7 +608,11 @@
 
                 const result = await response.json();
                 if (!response.ok) {
-                    errorText.textContent = result.error || 'Analysis failed. Please try again.';
+                    let errMsg = result.error || 'Analysis failed. Please try again.';
+                    if (result.details) {
+                        errMsg += ` (${result.details})`;
+                    }
+                    errorText.textContent = errMsg;
                 } else {
                     resultPanel.classList.remove('hidden');
                     statusText.textContent = 'Resume analysis delivered successfully.';

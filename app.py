@@ -185,9 +185,22 @@ def analyze_resume():
         analysis = analyze_resume_with_gemini(resume_text)
         return jsonify({"status": "success", "analysis": analysis})
     except ValueError as exc:
-        return jsonify({"error": str(exc)}), 502
+        return jsonify({"error": "Data extraction or parsing error.", "details": str(exc)}), 502
     except Exception as exc:
-        return jsonify({"error": "Gemini API unavailable or failed.", "details": str(exc)}), 500
+        exc_str = str(exc)
+        if "RESOURCE_EXHAUSTED" in exc_str or "429" in exc_str or "quota" in exc_str.lower():
+            error_msg = "Gemini API Quota Exceeded."
+            details = "The API quota limit has been reached or ended. Please try again later or verify your API billing."
+        elif "leaked" in exc_str.lower():
+            error_msg = "Gemini API Key Leaked."
+            details = "The configured API key has been flagged as leaked. Please use another API key."
+        elif "API key required" in exc_str or "API_KEY" in exc_str:
+            error_msg = "Gemini API Configuration Error."
+            details = "GOOGLE_API_KEY is missing or invalid in your .env configuration."
+        else:
+            error_msg = "Gemini API unavailable or failed."
+            details = exc_str
+        return jsonify({"error": error_msg, "details": details}), 500
     finally:
         try:
             os.remove(temp_path)
